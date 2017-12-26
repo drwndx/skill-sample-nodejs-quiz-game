@@ -22,8 +22,8 @@ function getSpeechDescription(item)
 //structure for each property of your data.
 function getQuestion(counter, property, item)
 {
-    return "Here is your " + counter + "th question.  What is the " + formatCasing(property) + " of "  + item.StateName + "?";
-
+    /* return "Here is your " + counter + "th question.  What is the " + formatCasing(property) + " of "  + item.StateName + "?"; */
+    return "Here is your " + counter + "th question. " + item.Question + "?";
     /*
     switch(property)
     {
@@ -51,10 +51,10 @@ function getAnswer(property, item)
     switch(property)
     {
         case "Abbreviation":
-            return "The " + formatCasing(property) + " of " + item.StateName + " is <say-as interpret-as='spell-out'>" + item[property] + "</say-as>. "
+            return "The " + formatCasing(property) + " of " + item.Question + " is <say-as interpret-as='spell-out'>" + item[property] + "</say-as>. "
         break;
         default:
-            return "The " + formatCasing(property) + " of " + item.StateName + " is " + item[property] + ". "
+            return "The " + formatCasing(property) + " of " + item.Question + " is " + item[property] + ". "
         break;
     }
 }
@@ -104,7 +104,7 @@ function getFinalScore(score, counter) { return "Your final score is " + score +
 const USE_CARDS_FLAG = true;
 
 //This is what your card title will be.  For our example, we use the name of the state the user requested.
-function getCardTitle(item) { return item.StateName;}
+function getCardTitle(item) { return item.Question;}
 
 //This is the small version of the card image.  We use our data as the naming convention for our images so that we can dynamically
 //generate the URL to the image.  The small image should be 720x400 in dimension.
@@ -116,11 +116,19 @@ function getLargeImage(item) { return "https://m.media-amazon.com/images/G/01/mo
 //=========================================================================================================================================
 //TODO: Replace this data with your own.
 //=========================================================================================================================================
+
 const data = [
-    {Question: "Helping a teammate by giving a push or a whip",        Answer: "Assist", Section: "" },
-    {Question: "At a minimum, what does protective gear for a competing skater consist of?",        Answer: "Wrist guards, elbow pads, knee pads, a helmet and a mouth guard", Section: "10.1.2" },
-    {Question: "At most, how many skaters can be on the roster for a specific game?",        Answer: "14", Section: "1.2" },
-    {Question: "What action is defined as \"Any movement on the track designed to impede or dislocate an opponent.\"",        Answer: "Block", Section: "" },
+    {Question: "Helping a teammate by giving a push or a whip",        Answer: "Assist"},
+    {Question: "At a minimum, what does protective gear for a competing skater consist of?",        Answer: "Wrist guards, elbow pads, knee pads, a helmet and a mouth guard" },
+    {Question: "At most, how many skaters can be on the roster for a specific game?",        Answer: "14"},
+    {Question: "What action is defined as \"Any movement on the track designed to impede or dislocate an opponent.\"",        Answer: "Block"},
+    {Question: "What section of the rule book defines the minimum protective gear for a skate as : Wrist guards, elbow pads, knee pads, a helmet and a mouth guard",        Answer: "10.1.2" },
+    {Question: "What section of the rule book defines how many skaters can be on the roster for a specific game as 14",        Answer: "1.2"},
+    {Question: "True or False: \n" +
+        "A late hit penalty should be given to a \n" +
+        "Skater who, after the end of a Jam, blocks \n" +
+        "an opponent so they are forced off the \n" +
+        "track but do not stumble or fall. ",        Answer: "False"}
 ];
 
 //=========================================================================================================================================
